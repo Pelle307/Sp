@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Hej med dig. her er en god hjemmeside</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#getbtn").click(function () {
+                    $.ajax({
+                        url: "api/quote/"+$("#lorteinputpikkelort").val(),
+                        type: "GET"
+                    }).done(function (dataFromServer) {
+                        $("#quote").val(dataFromServer.quote);
+                    }).fail(function () {
+                        alert("go away u silly devil");
+                    });
+                });
+
+            });
+
+
+        </script>
+    </head>
+    <body>
+        <div>quote</div>
+        <br>
+        <div><input id="lorteinputpikkelort" type="text" placeholder="enter id"> <button id="getbtn">get quote</button></div>
+        <div><input id="quote" style="width: 60em;" placeholder="quote comes here"></div>
+
+    </body>
+</html>
