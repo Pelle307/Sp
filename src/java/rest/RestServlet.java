@@ -68,24 +68,28 @@ public class RestServlet extends HttpServlet {
         String quote = quotes.get(id);
         JsonObject json = new JsonObject();
         json.addProperty("quote", quote);
-        json.addProperty("neger", "john");
+//        json.addProperty("neger", "john");
         
         makeResponse(new Gson().toJson(json), response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        quotes.size();
-        makeResponse("{\"id\": 123 }", response);
+        
+        int id = 1+quotes.size();
+        
+        quotes.put(id, getParam(request));
+        
+        JsonObject json = new JsonObject();
+        
+        System.out.println("kasper lugter af ost");
+        
+        json.addProperty("id", id);
+        
+        json.addProperty("quote", quotes.get(id));
+        
+        makeResponse(new Gson().toJson(json), response);
     }
 
     /**

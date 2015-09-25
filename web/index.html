@@ -12,6 +12,13 @@ and open the template in the editor.
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>
             $(document).ready(function () {
+                $("#setbtn").click(function () {
+                    $.ajax({
+                        type: "POST",
+                        url: "api/quote/" + $("#quote").val()
+                        
+                    });
+                });
                 $("#getbtn").click(function () {
                     $.ajax({
                         url: "api/quote/"+$("#lorteinputpikkelort").val(),
@@ -24,6 +31,7 @@ and open the template in the editor.
                 });
 
             });
+            
 
 
         </script>
@@ -32,7 +40,7 @@ and open the template in the editor.
         <div>quote</div>
         <br>
         <div><input id="lorteinputpikkelort" type="text" placeholder="enter id"> <button id="getbtn">get quote</button></div>
-        <div><input id="quote" style="width: 60em;" placeholder="quote comes here"></div>
+        <div><input id="quote" style="width: 60em;" placeholder="quote comes here"><button id="setbtn">set quote</button></div>
 
     </body>
 </html>
